@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:bullseye
 
 ENV LANG C.UTF-8
 
@@ -8,7 +8,7 @@ RUN apt-get -yqq update \
     && DEBIAN_FRONTEND=noninteractive \
        apt-get -yqq --no-install-recommends install \
          wget dnsutils openssl ca-certificates kmod \
-         iproute gawk grep sed net-tools iptables \
+         iproute2 gawk grep sed net-tools iptables \
          bsdmainutils libcurl3-nss \
          strongswan rsyslog ppp libpcap0.8 privoxy \
          xl2tpd
