@@ -1,26 +1,46 @@
-# HTTP Proxy through IPSEC L2TP VPN Client on Docker
-Docker image to run HTTP Proxy through IPsec VPN client, with IPsec/L2TP, based on : https://github.com/emmdim/docker-ipsec-vpn-client
+# 🌐 HTTP Proxy via IPsec L2TP VPN in Docker  
 
-## HOW TO
-After cloning the repo modify `docker-compose.yml` file
+A Docker image to run an HTTP proxy over an IPsec/L2TP VPN client. Based on [docker-ipsec-vpn-client](https://github.com/emmdim/docker-ipsec-vpn-client).  
 
-Below environment variables need to be passed by `docker-compose.yml`:
+## 🚀 Setup Instructions  
 
-* `VPN_IPSEC_PSK`, `VPN_USER`, `VPN_PASSWORD` provided from your VPN provider
-* the vpn provider's Host or IP is passed as `VPN_PUBLIC_IP` 
-* and your local host ip should be passed as well, named `VPN_LOCAL_IP`
+### 1️⃣ Clone the Repository  
+```bash  
+git clone <repo-url>  
+cd docker-l2tp-ipsec-vpn-http-proxy  
+```  
 
-Then container launch would look like:
+### 2️⃣ Configure VPN Credentials  
+Edit the `docker-compose.yml` file and set the following environment variables:  
 
-``./dockerstart.sh``
+| Variable            | Description                                  |  
+|---------------------|----------------------------------------------|  
+| `VPN_IPSEC_PSK`    | VPN Pre-Shared Key (provided by VPN provider) |  
+| `VPN_USER`         | VPN Username                                 |  
+| `VPN_PASSWORD`     | VPN Password                                 |  
+| `VPN_PUBLIC_IP`    | VPN Server Host/IP                           |  
+| `VPN_LOCAL_IP`     | Your local machine’s IP                     |  
 
-The container terminate would look like:
+### 3️⃣ Start the Container  
+Run the following command to launch the proxy:  
+```bash  
+./dockerstart.sh  
+```  
 
-``./dockerstop.sh``
+### 4️⃣ Stop the Container  
+To terminate the container, run:  
+```bash  
+./dockerstop.sh  
+```  
 
-## HTTP Proxy
-Then you can use the http proxy in your web browser.
+---  
 
-Example for puppeteer:
+## 🖥️ Using the HTTP Proxy  
+Once the container is running, you can use the HTTP proxy in your applications.  
 
-``puppeteer.launch({ args: ['--proxy-server=localhost:8040'] })``
+### Example: Puppeteer  
+```javascript  
+puppeteer.launch({ args: ['--proxy-server=localhost:8040'] });  
+```  
+
+You can now browse with the VPN's IP via the HTTP proxy. 🎉  
